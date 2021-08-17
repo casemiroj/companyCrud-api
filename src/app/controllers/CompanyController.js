@@ -2,8 +2,13 @@ const axios = require('axios');
 const CompanyRepository = require('../repositories/CompanyRepository');
 
 class CompanyController {
-  index(req, res) {
-    res.status(200).json({ API: 'online' });
+  async index(req, res) {
+    const companies = await CompanyRepository.findAll();
+    res.json(companies);
+  }
+
+  async show(req, res) {
+
   }
 
   async store(req, res) {
