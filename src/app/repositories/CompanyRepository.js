@@ -6,6 +6,14 @@ class CompanyRepository {
     return rows;
   }
 
+  async findByCnpj(cnpj) {
+    const [row] = await db.query(`
+      SELECT * FROM companies
+      WHERE cnpj = $1
+    `, [cnpj]);
+    return row;
+  }
+
   async create({
     cnpj, name, razao_social, logradouro, numero, municipio, uf,
   }) {

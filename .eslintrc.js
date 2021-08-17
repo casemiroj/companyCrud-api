@@ -15,5 +15,6 @@ module.exports = {
     'no-console': 'off',
     'class-methods-use-this': 'off',
     camelcase: 'off',
+    'consistent-return': 'off',
   },
 };

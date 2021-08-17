@@ -8,7 +8,14 @@ class CompanyController {
   }
 
   async show(req, res) {
+    const { cnpj } = req.params;
+    const company = await CompanyRepository.findByCnpj(cnpj);
 
+    if (!company) {
+      return res.status(404).json({ error: 'Company Not Found' });
+    }
+
+    res.json(company);
   }
 
   async store(req, res) {
