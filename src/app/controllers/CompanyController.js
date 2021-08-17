@@ -33,6 +33,19 @@ class CompanyController {
       res.status(404).json({ erro: 'CNPJ not found' });
     }
   }
+
+  async update(req, res) {
+    const { cnpj } = req.params;
+    const {
+      name, corporate_name, address, number, city, uf,
+    } = req.body;
+
+    const company = await CompanyRepository.update(cnpj, {
+      name, corporate_name, address, number, city, uf,
+    });
+
+    res.json(company);
+  }
 }
 
 module.exports = new CompanyController();

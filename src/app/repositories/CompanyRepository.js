@@ -25,6 +25,19 @@ class CompanyRepository {
 
     return row;
   }
+
+  async update(cnpj, {
+    name, corporate_name, address, number, city, uf,
+  }) {
+    const [row] = await db.query(`
+      UPDATE companies
+      SET name = $1, corporate_name = $2, address = $3, number = $4, city = $5, uf = $6
+      WHERE cnpj = $7
+      RETURNING *
+    `, [name, corporate_name, address, number, city, uf, cnpj]);
+
+    return row;
+  }
 }
 
 module.exports = new CompanyRepository();
