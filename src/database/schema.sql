@@ -1,1 +1,11 @@
-CREATE DATABASE companies;
+CREATE DATABASE dbcompanies;
+
+CREATE TABLE companies (
+  cnpj VARCHAR NOT NULL,
+  name VARCHAR NOT NULL,
+  corporate_name VARCHAR NOT NULL,
+  address VARCHAR NOT NULL,
+  number VARCHAR NOT NULL,
+  city VARCHAR NOT NULL,
+  uf VARCHAR NOT NULL
+);
