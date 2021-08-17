@@ -38,6 +38,11 @@ class CompanyRepository {
 
     return row;
   }
+
+  async delete(cnpj) {
+    const deleteOp = await db.query('DELETE from companies WHERE cnpj = $1', [cnpj]);
+    return deleteOp;
+  }
 }
 
 module.exports = new CompanyRepository();

@@ -40,11 +40,23 @@ class CompanyController {
       name, corporate_name, address, number, city, uf,
     } = req.body;
 
+    const companyByCnpj = await CompanyRepository.findByCnpj(cnpj);
+
+    if (!companyByCnpj) {
+      return res.status(404).json({ error: 'Company Not Found' });
+    }
+
     const company = await CompanyRepository.update(cnpj, {
       name, corporate_name, address, number, city, uf,
     });
 
     res.json(company);
+  }
+
+  async delete(req, res) {
+    const { cnpj } = req.params;
+    await CompanyRepository.delete(cnpj);
+    res.sendStatus(204);
   }
 }
 
